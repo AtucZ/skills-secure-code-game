@@ -70,20 +70,10 @@ app.post("/ufo", (req, res) => {
         xmlDoc.toString().includes(".admin")
       ) {
         extractedContent.forEach((command) => {
-          exec(command, (err, output) => {
-            if (err) {
-              console.error("could not execute command: ", err);
-              return;
-            }
-            console.log("Output: \n", output);
-            res.status(200).set("Content-Type", "text/plain").send(output);
-          });
+          console.log("Received command: ", command);
+          // No ejecutes el comando. En su lugar, puedes registrar el comando o manejarlo de una manera segura.
         });
-      } else {
-        res
-          .status(200)
-          .set("Content-Type", "text/plain")
-          .send(extractedContent.join(" "));
+        res.status(200).set("Content-Type", "text/plain").send("Command received.");
       }
     } catch (error) {
       console.error("XML parsing or validation error:", error.message);
